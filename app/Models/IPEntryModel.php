@@ -3,17 +3,18 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use App\Entities\IPEntry;
 
 class IPEntryModel extends Model
 {
     protected $table            = 'ip_entries';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
-    protected $returnType       = 'array';
+    protected $returnType       = IPEntry::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'ip_address', 'description', 'enabled'
+        'ip_address', 'description', 'enabled', 'list_id'
     ];
 
     protected bool $allowEmptyInserts = false;

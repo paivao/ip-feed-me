@@ -28,7 +28,7 @@
             <ul class="d-flex navbar-nav">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <?= esc($user->email) ?>
+                    <span hx-get="/user/whoami" hx-trigger="load" hx-swap="textContent" hx-boost="true"></span>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="<?= site_url("/user/profile") ?>"><?= lang('Basic.menu.profile') ?></a></li>

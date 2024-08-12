@@ -8,9 +8,8 @@
             <div class="columns">
                 <div class="column">
                     <?= view_cell('PanelCell', ['title' => 'Ação Rápida', 'options' => [
-                        lang('Basic.options.newUser') => site_url('/users/new'),
-                        lang('Basic.options.newList') => site_url('/lists/new'),
-                        lang('Basic.options.newEntry') => site_url('/entries/new'),
+                        lang('Basic.options.newUser') => site_url('/user/new'),
+                        lang('Basic.options.newList') => site_url('/list/new')
                     ] ]) ?>
                 </div>
                 <div class="column">

@@ -57,7 +57,7 @@ class Filters extends BaseFilters
         'after' => [
             'pagecache',   // Web Page Caching
             'performance', // Performance Metrics
-            'toolbar',     // Debug Toolbar
+            // 'toolbar',     // Debug Toolbar
         ],
     ];
 
@@ -73,10 +73,11 @@ class Filters extends BaseFilters
             // 'csrf',
             // 'invalidchars',
             'session' => [
-                'except' => ['login*', 'logout', 'show*'],
+                'except' => ['login*', 'logout', 'show/*'],
             ]
         ],
         'after' => [
+            // 'toolbar',
             // 'honeypot',
             // 'secureheaders',
         ],

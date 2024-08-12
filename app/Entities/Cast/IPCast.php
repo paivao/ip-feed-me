@@ -13,6 +13,7 @@ class IPCast extends BaseCast
         if ($l == 4 || $l == 16) {
             return inet_ntop(pack("A" . $l, $value));
         }
+        //return inet_ntop($value);
         return "";
     }
 

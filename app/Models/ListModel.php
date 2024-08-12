@@ -13,7 +13,7 @@ class ListModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'name'
+        'name', 'description', 'created_by'
     ];
 
     protected bool $allowEmptyInserts = false;
