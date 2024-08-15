@@ -4,8 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="<?= base_url('css/bootstrap.min.css') ?>">
-    <script src="<?= base_url('js/htmx.min.js') ?>"></script>
+    <?= link_tag('css/bootstrap.min.css') ?>
+    <?= script_tag('js/bootstrap.bundle.min.js') ?>
+    <?= script_tag('js/htmx.min.js') ?>
     <title>IP Feed ME</title>
 </head>
 

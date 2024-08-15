@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\ListModel;
+use App\Models\IPEntryModel;
 
 class HomeController extends BaseController
 {

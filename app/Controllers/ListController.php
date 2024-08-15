@@ -26,10 +26,23 @@ class ListController extends BaseController
     public function index()
     {
         $lists = model(ListModel::class)->findAll();
-        return view("list", [
+        return view("lists/home", [
             "title" => "Lists",
             "user" => auth()->user(),
             "lists" => $lists,
+        ]);
+    }
+
+    public function get(int $id) {
+        $listModel = model(ListModel::class);
+        $entryModel = model(IPEntryModel::class);
+
+        //$list = $listModel->find($id);
+
+        return view('lists/get', [
+            'title' => $listModel->find($id)['name'],
+            'entries' => $entryModel->where('list_id', $id)->paginate(10),
+            'pager' => $entryModel->pager,
         ]);
     }
 
@@ -53,7 +66,7 @@ class ListController extends BaseController
         }
 
         $list = $listModel->getInsertID();
-        return redirect()->to("/list/edit/{$list}");
+        return redirect()->to("/list/{$list}");
     }
 
     public function edit(int $id) {
@@ -73,10 +86,6 @@ class ListController extends BaseController
     }
 
     public function manage_ip(int $id) {
-        if (! $this->request->is('post')) {
-            return $this->edit($id);
-        }
-        
         $data = $this->request->getPost(array_keys(self::ENTRY_RULES));
         $action = $this->request->getPost('action');
         if ($action == 'new-ip') {
@@ -96,7 +105,7 @@ class ListController extends BaseController
             }
         }
 
-        return $this->response->redirect()->back();
+        return redirect()->back();
     }
 
     public function show(string $name)
