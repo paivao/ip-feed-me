@@ -31,7 +31,10 @@ class IPEntryModel extends Model
     protected $deletedField  = 'deleted_at';
 
     // Validation
-    protected $validationRules      = [];
+    protected $validationRules      = [
+        'ip_address' => 'valid_ip|required',
+        'description' => 'max_length[255]',
+    ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;

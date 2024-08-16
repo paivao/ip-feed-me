@@ -30,7 +30,11 @@ class ListModel extends Model
     protected $deletedField  = 'deleted_at';
 
     // Validation
-    protected $validationRules      = [];
+    protected $validationRules      = [
+        'name' => 'alpha_dash|max_length[64]|required',
+        'description' => 'max_length[255]',
+        'is_public' => 'required',
+    ];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;

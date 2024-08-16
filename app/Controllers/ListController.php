@@ -10,17 +10,6 @@ use App\Models\IPEntryModel;
 
 class ListController extends BaseController
 {
-    const LIST_RULES = [
-        'name' => 'alpha_dash|max_length[64]|required',
-        'description' => 'max_length[255]',
-        'is_public' => 'required'
-    ];
-
-    const ENTRY_RULES = [
-        'ip_address' => 'valid_ip|required',
-        'description' => 'max_length[255]'
-    ];
-
     protected $helpers = ['form'];
 
     public function index()
@@ -51,13 +40,10 @@ class ListController extends BaseController
         if (! $this->request->is('post')) {
             return $this->index();
         }
-
-        $data = $this->request->getPost(array_keys(self::LIST_RULES));
-
-        if (! $this->validateData($data, self::LIST_RULES)) {
-            return $this->index();
-        }
         $listModel = model(ListModel::class);
+
+        $data = $this->request->getPost(array_keys($listModel->getValidationRules()));
+
         $validData = $this->validator->getValidated();
         $validData['created_by'] = auth()->user()->id;
         if (! $listModel->insert($validData, false)) {
@@ -86,23 +72,19 @@ class ListController extends BaseController
     }
 
     public function manage_ip(int $id) {
-        $data = $this->request->getPost(array_keys(self::ENTRY_RULES));
+        $entryModel = model(IPEntryModel::class);
         $action = $this->request->getPost('action');
-        if ($action == 'new-ip') {
-            if (! $this->validateData($data, self::ENTRY_RULES)) {
-                return $this->edit($id);
-            }
+        if ($action === 'new-ip') {
+            $data = $this->request->getPost(array_keys($entryModel->getValidationRules()));
             $entry = new IPEntry;
-            $entryModel = model(IPEntryModel::class);
-            $validData = $this->validator->getValidated();
-            $entry->fill($validData);
-            $entry->created_by = auth()->user()->id;
             $entry->list_id = $id;
-            //return response()->setJSON($validData);
-            if (! $entryModel->save($entry, true) ) {
-                // TODO adicionar erro
-                return $this->edit($id);
+            $entry->fill($data);
+            if ($entryModel->save($entry)) {
+                session()->setFlashdata("message_ok", "IP adicionado com sucesso!");
+            } else {
+                
             }
+            return $this->get($id);
         }
 
         return redirect()->back();
