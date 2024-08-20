@@ -1,5 +1,6 @@
 <?php
 
+use App\Controllers\ErrorController;
 use CodeIgniter\Router\RouteCollection;
 
 use App\Controllers\ListController;
@@ -17,6 +18,8 @@ $routes->post('/list/new', 'ListController::new');
 $routes->post('/list/new', 'ListController::new');
 $routes->get('/list/edit/(:num)', 'ListController::edit/$1');
 $routes->post('/list/edit/(:num)/manage-ip', 'ListController::manage_ip/$1');
+
+$routes->add('/errors/(:segment)', [ErrorController::class, 'showError']);
 
 $routes->get('/user/whoami', 'UserController::whoami');
 

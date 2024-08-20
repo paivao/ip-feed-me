@@ -1,7 +1,7 @@
-<?= $this->extend('layout') ?>
+<?= $this->extend('layouts/page') ?>
 
 <?= $this->section('content') ?>
-    <?= $this->include('nav') ?>
+    <?= $this->include('layouts/nav') ?>
     <main class="section">
         <div class="container">
             <h1 class="title"><?= esc($title) ?></h1>

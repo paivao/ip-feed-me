@@ -20,6 +20,7 @@ class EntryTable extends Migration
             'name' => [
                 'type' => 'CHAR',
                 'constraint' => 64,
+                'unique' => true,
             ],
             'description' => [
                 'type' => 'VARCHAR',
@@ -66,6 +67,10 @@ class EntryTable extends Migration
                 'type' => 'VARBINARY',
                 'constraint' => 16,
                 'unique' => true,
+            ],
+            'netmask' => [
+                'type' => 'INT',
+                'default' => 32,
             ],
             'description' => [
                 'type' => 'VARCHAR',

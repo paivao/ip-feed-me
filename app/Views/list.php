@@ -1,7 +1,7 @@
-<?= $this->extend('layout') ?>
+<?= $this->extend('layouts/page') ?>
 
 <?= $this->section('content') ?>
-<?= $this->include('nav') ?>
+<?= $this->include('layouts/nav') ?>
 <h1 class="text-center w-100">IP Feed Me - List Management</h1>
 <main class="container">
     <div id="message"></div>
@@ -30,7 +30,7 @@
             <div class="card">
                 <h5 class="card-header">Adicionar IPs</h5>
                 <div class="card-body">
-                    <form hx-post="/list/edit/<?= $segments[0] ?>/manage-ip" id="add-ip-form" hx-target="#list-content" class="row" hx-boost="true">
+                    <form hx-post="<?= site_url("/list/edit/{$segments[0]}/manage-ip") ?>" id="add-ip-form" hx-target="#list-content" class="row" hx-boost="true">
                         <div class="col-md-4" id="ip-group">
                             <label for="input-ip" class="form-label">Endereços IP</label>
                             <input type="text" class="form-control" id="input-ip" name="ip_address" required>
