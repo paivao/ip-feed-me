@@ -13,6 +13,14 @@ They are used to create **allowlists** and **blocklists** to be fed into applian
 
 This is an simple IP Feed management ~engine~ (system), created with PHP.
 
+It has two components.
+
+The first one is an web management interface, where you can create lists, grant permission on them, add IP
+entries, enable/disable them, and set an timeout.
+
+The second one is an feed endpoint. It enables anyone and any equipment to fetch the feed, as an text entry.
+The endpoint can also be protected, either by IP or by authenticated access, which using API key or credentials.
+
 It uses CodeIgniter4 (with CodeIgniter Shield) as the backend frameword, and HTMX and Bootstrap for frontend.
 
 It is capable of:
@@ -22,6 +30,6 @@ It is capable of:
 - Getting an feed list (an `plain/text` endpoint)
 - Create users
 - Grand api keys
-- Create an
+- Create an timeout for each entry
 
 This is an work in progress, any sugestion will be wellcome. And any contribution too ;)
