@@ -84,7 +84,7 @@ class ListController extends BaseController
         $entryModel = model(IPEntryModel::class);
         $action = $this->request->getPost('action');
         if ($action === 'new-ip') {
-            $data = $this->request->getPost(array_keys($entryModel->getValidationRules()));
+            $data = array_filter($this->request->getPost(array_keys($entryModel->getValidationRules())));
             $entry = new IPEntry;
             $entry->fill($data);
             $entry->list_id = $id;
@@ -96,7 +96,7 @@ class ListController extends BaseController
             }
             return $this->get($id) . view_cell('AlertCell', [
                 'type' => 'success',
-                'messages' => ['IP adicionado com sucesso!', $entry->netmask],
+                'messages' => ['IP adicionado com sucesso!'],
             ]);
         }
 

@@ -27,11 +27,11 @@ class IPEntry extends Entity
         if ($l == 4 || $l == 16) {
             return inet_ntop(pack("A" . $l, $ip));
         }
-        //return inet_ntop($value);
-        return $ip;
+        return inet_ntop($ip);
+        //return $ip;
     }
 
     public function getIpVersion() {
-        return strlen($this->attributes['ip_address']);
+        return (strlen($this->attributes['ip_address']) == 4) ? 4 : 6;
     }
 }
