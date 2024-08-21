@@ -88,16 +88,10 @@ class ListController extends BaseController
             $entry = new IPEntry;
             $entry->fill($data);
             $entry->list_id = $id;
-            return view_cell('AlertCell', [
-                'type' => 'danger',
-                //'messages' => $entryModel->errors(),
-                'messages' => [var_dump($entry)],
-            ]);
             if ($entryModel->save($entry) === false) {
                 return view_cell('AlertCell', [
                     'type' => 'danger',
-                    //'messages' => $entryModel->errors(),
-                    'messages' => [var_dump($entry)],
+                    'messages' => $entryModel->errors(),
                 ]);
             }
             return $this->get($id) . view_cell('AlertCell', [

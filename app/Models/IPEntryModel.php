@@ -14,7 +14,7 @@ class IPEntryModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'ip_address', 'description', 'enabled', 'list_id', 'netmask'
+        'ip_address', 'description', 'enabled', 'list_id'
     ];
 
     protected bool $allowEmptyInserts = false;
@@ -33,7 +33,7 @@ class IPEntryModel extends Model
     // Validation
     protected $validationRules      = [
         'ip_address' => 'valid_ip|required',
-        'netmask' => 'permit_empty|is_natural_no_zero|greater_than_equal_to[0]|less_than_equal_to[32]',
+        'netmask' => 'permit_empty|is_natural_no_zero|greater_than_equal_to[0]|less_than_equal_to[128]',
         'description' => 'max_length[255]',
     ];
     protected $validationMessages   = [];

@@ -17,8 +17,8 @@ class IPEntry extends Entity
         @list($ip, $mask) = explode('/', $ip_address, 2);
         $packed = inet_pton($ip);
         $this->attributes['ip_address'] = $packed;
-        $this->attributes['netmask'] = $mask ?? ((strlen($packed) == 4) ? 32 : 128);
-        throw new \ErrorException(print_r($this->attributes, true));
+        $this->__set('netmask', $mask ?? ((strlen($packed) == 4) ? 32 : 128));
+        //throw new \ErrorException(print_r($this->attributes, true));
     }
 
     public function getIpAddress() {
